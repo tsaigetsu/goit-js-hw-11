@@ -1,0 +1,11 @@
+import{S as u,i as f}from"./assets/vendor-0fc460d7.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const i of r.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&n(i)}).observe(document,{childList:!0,subtree:!0});function o(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(e){if(e.ep)return;e.ep=!0;const r=o(e);fetch(e.href,r)}})();function m(t){const s="https://pixabay.com/api/",o=new URLSearchParams({key:"43997530-fac9ffe50b9517751943b9e7a",q:t,image_type:"photo",orientation:"horizontal",safesearch:"true"}),n=`${s}?${o}`;return fetch(n).then(e=>{if(!e)throw new Error(e.statusText);return e.json()})}document.querySelector(".gallery");function p(t){return`<li class="img-item">
+    <a class="img-link" href="${t.largeImageURL}">
+    <img class="image" src="${t.webformatURL}" alt="${t.tags}"></a>
+<div class="img-info">
+    <p class="info"><b>Likes</b> ${t.likes}</p>
+    <p class="info"><b>Views</b> ${t.views}</p>
+    <p class="info"><b>Comments</b> ${t.comments}</p>
+    <p class="info"><b>Downloads</b> ${t.downloads}</p>
+   </div>
+    </li>`}function d(t){return t.map(p).join("")}function y(){new u("gallery, a",{captionsData:"alt",captionDelay:250}).refresh()}const g=document.querySelector(".form"),a=document.querySelector(".gallery"),c=document.querySelector(".loader");g.addEventListener("submit",t=>{t.preventDefault(),a.innerHTML="",l();const s=t.target.elements.query.value.trim();m(s).then(o=>{if(o.hits.length===0){f.error({message:"Sorry, there are no images matching your search query.Please try again!",messageColor:"#FAFAFB",color:"#EF4040",position:"topRight"});return}else{const n=d(o.hits);a.innerHTML=n,l(),y()}}).catch(o=>console.log(o)).finally(()=>{t.target.reset(),h()})});function l(){c.style.display="block"}function h(){c.style.display="none"}
+//# sourceMappingURL=commonHelpers.js.map
